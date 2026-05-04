@@ -12953,7 +12953,7 @@ Legacy.echo(Ltrack.health)</script>
 					<colorTriggerFgColor>#000000</colorTriggerFgColor>
 					<colorTriggerBgColor>#000000</colorTriggerBgColor>
 					<regexCodeList>
-						<string>^As your blow cuts deeply into the leg of \w+, you drive savagely forward, taking \w+ clean off\w+ feet.$</string>
+						<string>^As your blow cuts deeply into the leg of \w+, you drive savagely forward, taking \w+ clean off \w+ feet.$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -30476,6 +30476,7 @@ local v2 = ''
     v1 = sconre.nausea
   elseif score.asthma &lt; 100 then
     v1 = score.asthma
+
   end
   
   
@@ -30485,6 +30486,14 @@ local v2 = ''
     v2 = vcon.clumsiness
   elseif score.asthma &lt; 100 and v1 ~= vcon.asthma then
     v2 = vcon.asthma
+  elseif score.disloyalty &lt; 100 and v1 ~= vcon.disloyalty then
+    v2 = vcon.disloyalty
+  elseif score.addiction &lt; 50 and v1 ~= vcon.addiction then
+    v2 = vcon.addiction
+  elseif score.darkshade &lt; 50 and v1 ~= vcon.darkshade then
+    v2 = vcon.darkshade
+  elseif score.weariness &lt; 50 and v1 ~= vcon.weariness then
+    v2 = vcon.weariness
   elseif v1 == vcon.paralysis and score.slickness &lt;= 50 and score.asthma &gt; 50 and Ltrack.kelpscore &gt;= 3 then
     v2 = vcon.slickness
   end
