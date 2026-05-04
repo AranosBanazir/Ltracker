@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>limb damaged timed out</name>
+			<script>Legacy.SLC.reset(matches[2])</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^The pain plaguing your (.+) subsides\.$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>getting hit</name>
+			<script>Legacy.SLC.addHit(matches.limb, matches.dmg)
+cecho(' &lt;DimGrey&gt;(&lt;'..Legacy.SLC.color(matches.limb)..'&gt;'..Legacy.SLC.limbs[matches.limb]..'%&lt;DimGrey&gt;)')</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^As (?&lt;attacker&gt;\w+)'?s? .+, you perceive that \w+ has dealt (?&lt;dmg&gt;.+)% damage to your (?&lt;limb&gt;.+)\.$</string>
+				<string>^As .+, you perceive that you have dealt (?&lt;dmg&gt;.+)% damage to your (?&lt;limb&gt;.+).$</string>
+				<string>^As the immaterial cleaves the material, you perceive that (?&lt;name&gt;\w+) has dealt (?&lt;dmg&gt;.+)% damage to your (?&lt;limb&gt;.+)\.$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Slain</name>
+			<script>Legacy.SLC.reset()</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^You have been slain by .+$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage>
+		<Alias isActive="yes" isFolder="no">
+			<name>reset</name>
+			<script>Legacy.SLC.reset()</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^slc$</regex>
+		</Alias>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>SLC</name>
+			<packageName></packageName>
+			<script>
+function SLC_Setup()
+Legacy.SLC = Legacy.SLC or {}
+if not Legacy then return end
+Legacy.SLC.limbs = {
+  ["head"] = 0,
+  ["left arm"] = 0,
+  ["right arm"] = 0,
+  ["left leg"] = 0,
+  ["right leg"] = 0,
+  ["torso"] = 0
+
+}
+
+function Legacy.SLC.color(limb)
+  local limbHealth = Legacy.SLC.limbs[limb]
+  
+  if limbHealth &lt;= 50 then
+    return 'green'
+  elseif limbHealth &gt;= 50 and limbHealth &lt; 90 then
+    return 'DarkOrange'
+  elseif limbHealth &gt;= 90 then
+    return 'red'
+  end
+
+end
+
+
+function Legacy.SLC.affReset()
+    if gmcp.Char.Afflictions.Remove[1] == "damagedleftleg" then
+      Legacy.SLC.reset("left leg")
+    elseif gmcp.Char.Afflictions.Remove[1] == "damagedrightleg" then
+      Legacy.SLC.reset("right leg")
+    elseif gmcp.Char.Afflictions.Remove[1] == "damagedrightarm" then
+      Legacy.SLC.reset("right arm")
+    elseif gmcp.Char.Afflictions.Remove[1] == "damagedleftarm" then
+      Legacy.SLC.reset("left arm")
+    elseif gmcp.Char.Afflictions.Remove[1] == 'mildtrauma' then
+      Legacy.SLC.reset("torso")
+    elseif gmcp.Char.Afflictions.Remove[1] == 'damagedhead' then
+      Legacy.SLC.reset("head")
+    end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Afflictions.Remove", "Legacy.SLC.affReset")
+
+
+
+function Legacy.SLC.addHit(limb, dmg)
+  Legacy.SLC.limbs[limb] = Legacy.SLC.limbs[limb] + dmg
+
+  
+  Legacy.SLC.assess()
+end
+
+
+
+function Legacy.SLC.assess()
+
+  if Legacy.SLC.limbs.torso &gt;= 100 then
+    send('curing predict mildtrauma')
+    Legacy.SLC.reset('torso')
+  end
+
+
+end
+
+
+function Legacy.SLC.reset(limb)
+  if limb then limb = limb:lower() end
+  if not limb then
+    Legacy.SLC.limbs = {
+  ["head"] = 0,
+  ["left arm"] = 0,
+  ["right arm"] = 0,
+  ["left leg"] = 0,
+  ["right leg"] = 0,
+  ["torso"] = 0
+  }
+    cecho('\n&lt;red&gt;[&lt;DimGrey&gt;SLC&lt;red&gt;]: &lt;white&gt;Reset all limb counts.')
+  else
+    Legacy.SLC.limbs[limb] = 0
+    cecho('\n&lt;red&gt;[&lt;DimGrey&gt;SLC&lt;red&gt;]: &lt;white&gt;Reset '..limb..' counts.')
+  end
+end
+end
+registerAnonymousEventHandler("LegacyLoaded", "SLC_Setup")
+</script>
+			<eventHandlerList />
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<VariablePackage>
+		<HiddenVariables />
+	</VariablePackage>
+</MudletPackage>
