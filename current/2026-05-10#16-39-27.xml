@@ -13770,7 +13770,8 @@ table.remove(Ltrack.envenomed, 1)
 						<regexCodePropertyList />
 						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 							<name>Blackout</name>
-							<script>if Ltrack.monk.mindAff ~= 'blackout' then return end
+							<script>if not Ltrack.isTarget(matches.tar) then return end
+
 Ltrack.gainedAff('blackout')</script>
 							<triggerType>0</triggerType>
 							<conditonLineDelta>0</conditonLineDelta>
@@ -13796,7 +13797,7 @@ Ltrack.gainedAff('blackout')</script>
 for _, cmd in pairs(tbl) do
   if cmd:lower():match('mind') then
     local index = {}
-    Ltrack.monk.mindAff = tbl[(table.index_of(tbl, cmd) + 1)]:lower()
+    Legacy.echo(tbl[(table.index_of(tbl, cmd) + 1)]:lower())
   end
 end
 </script>
@@ -13816,48 +13817,6 @@ end
 							</regexCodeList>
 							<regexCodePropertyList>
 								<integer>1</integer>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Mind Aff Failed</name>
-							<script>Ltrack.monk.mindAff = ''</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>You require a mindlock to perform that ability.</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>3</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Mind Impatience</name>
-							<script>if Ltrack.monk.mindAff ~= 'impatience' then return end
-Ltrack.gainedAff('impatience')
-Ltrack.monk.mindAff = ''</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You fill the mind of \w+ with an impatient feeling.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
 								<integer>1</integer>
 							</regexCodePropertyList>
 						</Trigger>

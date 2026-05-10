@@ -13770,7 +13770,8 @@ table.remove(Ltrack.envenomed, 1)
 						<regexCodePropertyList />
 						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 							<name>Blackout</name>
-							<script>if Ltrack.monk.mindAff ~= 'blackout' then return end
+							<script>if not Ltrack.isTarget(matches.tar) then return end
+
 Ltrack.gainedAff('blackout')</script>
 							<triggerType>0</triggerType>
 							<conditonLineDelta>0</conditonLineDelta>
@@ -13784,78 +13785,6 @@ Ltrack.gainedAff('blackout')</script>
 							<colorTriggerBgColor>#000000</colorTriggerBgColor>
 							<regexCodeList>
 								<string>^You summon up your will and throw a devastating shaft of telepathic energy into (?&lt;tar&gt;\w+), causing \w+ to experience a total blackout\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Mind abilities</name>
-							<script>local tbl = matches[2]:split(' ')
-
-for _, cmd in pairs(tbl) do
-  if cmd:lower():match('mind') then
-    local index = {}
-    Ltrack.monk.mindAff = tbl[(table.index_of(tbl, cmd) + 1)]:lower()
-  end
-end
-</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^\[\System\]\: Added (.+) to your \w+ queue\.$</string>
-								<string>^Alias \".+\" will now execute\: \"(.+)"$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Mind Aff Failed</name>
-							<script>Ltrack.monk.mindAff = ''</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>You require a mindlock to perform that ability.</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>3</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Mind Impatience</name>
-							<script>if Ltrack.monk.mindAff ~= 'impatience' then return end
-Ltrack.gainedAff('impatience')
-Ltrack.monk.mindAff = ''</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You fill the mind of \w+ with an impatient feeling.$</string>
 							</regexCodeList>
 							<regexCodePropertyList>
 								<integer>1</integer>
@@ -31566,6 +31495,7 @@ function Ltrack.backTrack(method)
           end
         end
    elseif method == 'smadness' then
+      
     local ret = {};
       Ltrack.score.shadowmadness = 0 
       if Ltrack.lastEaten == 'goldenseal' or Ltrack.lastEaten == 'plumbum' then 
@@ -31619,8 +31549,9 @@ function Ltrack.backTrack(method)
             score[aff] = 100
           end
         end
+   elseif method == 'applied' then
+    Ltrack.lostAff('slickness')
    elseif method == 'ate' then
-    Ltrack.lostAff('anorexia')
     if Ltrack.lastEaten == 'goldenseal' or Ltrack.lastEaten == 'plumbum' then
       local ret = {}
       for _,aff in pairs(Ltrack.eats['goldenseal']) do
@@ -31825,9 +31756,6 @@ function Ltrack.hardreset()
       Ltrack.score[aff] = 0
     end
   Ltrack.totalaffs = 0
-  Ltrack.kelpscore = 0
-  Ltrack.ginsengscore = 0
-  Ltrack.mentalscore = 0
 end
 
 function Ltrack.totalAffs()
@@ -31835,7 +31763,6 @@ function Ltrack.totalAffs()
   local kelps = {}
   local mentals = {}
   local ginseng = {}
-  local affScore = Ltrack.score
   
     for aff,score in pairs(Ltrack.score) do
       if Ltrack.score[aff] &gt; 0 then
@@ -31857,27 +31784,12 @@ function Ltrack.totalAffs()
         end       
     end
   end
-  
-  local count = 0
-  for _, aff in pairs(kelps) do
-    count = count + Ltrack.score[aff]
-  end
-  Ltrack.kelpscore = count / 100
     
-  count = 0
-  for _, aff in pairs(ginseng) do
-    count = count + Ltrack.score[aff]
-  end
-  Ltrack.ginsengscore = count / 100
-  
-  count = 0
-  for _, aff in pairs(mentals) do
-    count = count + Ltrack.score[aff]
-  end
-  Ltrack.mentalscore = count / 100
    
-  
   Ltrack.totalaffs = #temp
+  Ltrack.kelpscore = #kelps
+  Ltrack.ginsengscore = #ginseng
+  Ltrack.mentalscore = #mentals
 end
  registerAnonymousEventHandler('affsUpdated', 'Ltrack.totalAffs')
 
@@ -31962,13 +31874,6 @@ end</script>
   Ltrack.alch.shriek = true
   Ltrack.alch.wrackedHumour = ''
   Ltrack.alch.temperedHumour = ''</script>
-					<eventHandlerList />
-				</Script>
-				<Script isActive="yes" isFolder="no">
-					<name>Monk</name>
-					<packageName></packageName>
-					<script>Ltrack.monk = Ltrack.monk or {}
-Ltrack.monk.mindAff = ''</script>
 					<eventHandlerList />
 				</Script>
 			</ScriptGroup>
@@ -34572,10 +34477,6 @@ registerAnonymousEventHandler("sysInstallPackage", myScriptInstalled)</script>
   TODO:
     Make stack tracking for kelp, ginseng, mentals
     Do something to track blindness?
-    
-    
-  NOTES:
-    Anorexia is included in mentalscore, but is not included in the focus table, because it is backtracked only
                           
 ]]
 
