@@ -21,8 +21,8 @@
 			<serverPackageVersion>-1</serverPackageVersion>
 			<port>23</port>
 			<borderTopHeight>0</borderTopHeight>
-			<borderBottomHeight>133</borderBottomHeight>
-			<borderLeftWidth>305</borderLeftWidth>
+			<borderBottomHeight>132</borderBottomHeight>
+			<borderLeftWidth>154</borderLeftWidth>
 			<borderRightWidth>0</borderRightWidth>
 			<wrapAt>100</wrapAt>
 			<wrapIndentCount>0</wrapIndentCount>
@@ -11708,11 +11708,16 @@ Ltrack.treed()</script>
 					</regexCodePropertyList>
 				</Trigger>
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>apply</name>
-					<script>if not Ltrack.isTarget(matches[2]) then return end
-Ltrack.applied(matches[3])
-Ltrack.backTrack('applied')
-</script>
+					<name>ano apply</name>
+					<script>Ltrack.backTrack('applied')
+
+if Ltrack.score.itching &gt; 0 then
+  Ltrack.score.itching = 0
+end
+
+if Ltrack.score.anorexia &gt; 0 then
+  Ltrack.score.anorexia = 0
+end</script>
 					<triggerType>0</triggerType>
 					<conditonLineDelta>0</conditonLineDelta>
 					<mStayOpen>0</mStayOpen>
@@ -11724,7 +11729,7 @@ Ltrack.backTrack('applied')
 					<colorTriggerFgColor>#000000</colorTriggerFgColor>
 					<colorTriggerBgColor>#000000</colorTriggerBgColor>
 					<regexCodeList>
-						<string>^(\w+) takes some salve from a vial and rubs it on \w+ (\w+).$</string>
+						<string>^(\w+) takes some salve from a vial and rubs it on \w+ body.$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -11922,69 +11927,6 @@ Ltrack.defs.rebounding = true</script>
 						</regexCodePropertyList>
 					</Trigger>
 				</TriggerGroup>
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>Limbs</name>
-					<script></script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList />
-					<regexCodePropertyList />
-					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Limb Hit Weapon Last</name>
-						<script></script>
-						<triggerType>0</triggerType>
-						<conditonLineDelta>0</conditonLineDelta>
-						<mStayOpen>0</mStayOpen>
-						<mCommand></mCommand>
-						<packageName></packageName>
-						<mFgColor>#ff0000</mFgColor>
-						<mBgColor>#ffff00</mBgColor>
-						<mSoundFile></mSoundFile>
-						<colorTriggerFgColor>#000000</colorTriggerFgColor>
-						<colorTriggerBgColor>#000000</colorTriggerBgColor>
-						<regexCodeList>
-							<string>^Lightning-quick, you jab [\w'\-]+'s (right leg|left leg|right arm|left arm|head|torso) with (.*)\.</string>
-							<string>^Lightning-quick, you stab [\w'\-]+'s (right leg|left leg|right arm|left arm|head|torso) with (.*)\.</string>
-							<string>^You slash into [\w'\-]+\'s (right leg|left leg|right arm|left arm|head|torso) with (.*)\.$</string>
-						</regexCodeList>
-						<regexCodePropertyList>
-							<integer>1</integer>
-							<integer>1</integer>
-							<integer>1</integer>
-						</regexCodePropertyList>
-					</Trigger>
-				</TriggerGroup>
-				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>Party Aff Follow</name>
-					<script>Legacy.echo('help')
-if not Ltrack.isTarget(matches[2]) then return end
-local affs = matches[3]:split(' ')
-</script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList>
-						<string>^\(Party\): \w+ says, "(\w+) hit with (.+)."$</string>
-					</regexCodeList>
-					<regexCodePropertyList>
-						<integer>1</integer>
-					</regexCodePropertyList>
-				</Trigger>
 			</TriggerGroup>
 			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Classes</name>
@@ -12001,7 +11943,7 @@ local affs = matches[3]:split(' ')
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList />
 				<regexCodePropertyList />
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<TriggerGroup isActive="no" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Alchemist</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -12646,7 +12588,7 @@ end</script>
 						</regexCodePropertyList>
 					</Trigger>
 				</TriggerGroup>
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<TriggerGroup isActive="no" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Depthswalker</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -13236,7 +13178,7 @@ Ltrack.gainedAff('nausea')</script>
 						</Trigger>
 					</TriggerGroup>
 				</TriggerGroup>
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<TriggerGroup isActive="no" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Priest</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -13726,47 +13668,6 @@ Ltrack.priest.usedHellsight = true</script>
 							<integer>1</integer>
 						</regexCodePropertyList>
 					</Trigger>
-					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Smite</name>
-						<script>Ltrack.limbs.hitLimb = matches[2]</script>
-						<triggerType>0</triggerType>
-						<conditonLineDelta>0</conditonLineDelta>
-						<mStayOpen>0</mStayOpen>
-						<mCommand></mCommand>
-						<packageName></packageName>
-						<mFgColor>#ff0000</mFgColor>
-						<mBgColor>#ffff00</mBgColor>
-						<mSoundFile></mSoundFile>
-						<colorTriggerFgColor>#000000</colorTriggerFgColor>
-						<colorTriggerBgColor>#000000</colorTriggerBgColor>
-						<regexCodeList>
-							<string>^You utter a prayer and smite \w+'s (.+) with .+.$</string>
-						</regexCodeList>
-						<regexCodePropertyList>
-							<integer>1</integer>
-						</regexCodePropertyList>
-					</Trigger>
-					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Smash check</name>
-						<script>local smashedLimb = Ltrack.limbs.hitLimb:gsub(' ', '')
-Ltrack.gainedAff(smashedLimb)</script>
-						<triggerType>0</triggerType>
-						<conditonLineDelta>0</conditonLineDelta>
-						<mStayOpen>0</mStayOpen>
-						<mCommand></mCommand>
-						<packageName></packageName>
-						<mFgColor>#ff0000</mFgColor>
-						<mBgColor>#ffff00</mBgColor>
-						<mSoundFile></mSoundFile>
-						<colorTriggerFgColor>#000000</colorTriggerFgColor>
-						<colorTriggerBgColor>#000000</colorTriggerBgColor>
-						<regexCodeList>
-							<string>It breaks with a satisfying 'CRACK'.</string>
-						</regexCodeList>
-						<regexCodePropertyList>
-							<integer>3</integer>
-						</regexCodePropertyList>
-					</Trigger>
 				</TriggerGroup>
 				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Warriors</name>
@@ -13962,333 +13863,6 @@ Ltrack.monk.mindAff = ''</script>
 						</Trigger>
 					</TriggerGroup>
 				</TriggerGroup>
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>Magi</name>
-					<script></script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList />
-					<regexCodePropertyList />
-					<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-						<name>Resonance Affs</name>
-						<script></script>
-						<triggerType>0</triggerType>
-						<conditonLineDelta>0</conditonLineDelta>
-						<mStayOpen>0</mStayOpen>
-						<mCommand></mCommand>
-						<packageName></packageName>
-						<mFgColor>#ff0000</mFgColor>
-						<mBgColor>#ffff00</mBgColor>
-						<mSoundFile></mSoundFile>
-						<colorTriggerFgColor>#000000</colorTriggerFgColor>
-						<colorTriggerBgColor>#000000</colorTriggerBgColor>
-						<regexCodeList />
-						<regexCodePropertyList />
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Earth 1</name>
-							<script>if not Ltrack.isTarget(matches[4]) then return end
-local limb = matches[2]..""..matches[3]
-  
-  if affstrack.score[limb] == 0 then
-    Ltrack.gainedAff(limb)
-  end
-</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^A loud crack emanates from the (\w+) (\w+) of (\w+)\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Earth 2</name>
-							<script>Ltrack.gainedAff('paralysis')</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You bleed off residual power from your connection with the Elemental Plane of Earth, directing it in an unfocussed blast of arcane might at (\w+)\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Earth 3</name>
-							<script>Ltrack.gainedAff('crackedribs')</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^The might of Elemental Earth coursing through you, you smite (\w+) with the full force of your directed will\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Water 1</name>
-							<script>if ak.ai() then return end
-local aff = "frostbite"
-if IsTargetted(matches[2]) then
-  OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^As you begin to tap your connection with the Elemental Plane of Water, you summon up a freezing wave to deluge (\w+)\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Water 2</name>
-							<script>if ak.ai() then return end
-local aff = "stuttering"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You summon up a flurry of icicles to slash at (\w+) in a shower of freezing daggers\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Water 3</name>
-							<script>if ak.ai() then return end
-local aff = "nausea anorexia"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^The might of Elemental Water suffusing you, you tear at the vital fluids which sustain the body of (\w+) with your will alone\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Fire 1</name>
-							<script>if ak.ai() then return end
-local aff = "notemper"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end
-</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You send a spray of sparks to assault (\w+)\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Fire 2</name>
-							<script>if ak.ai() then return end
-if IsTargetted(matches[2]) then
-  if affstrack.score.scalded == 0 then
-    OppGainedAff("scalded")
-    if ak.scaldTimer then killTimer(ak.scaldTimer) end
-    ak.scaldTimer = tempTimer(17,[[
-     	affstrack.score.scalded = 0
-     	ak.scoreup(]]..matches[2]..[[)
-    ]])
-  else
-    OppGainedAff(aff)
-  end
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^You will that (\w+) should burn, and so \w+ does\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Fire 3</name>
-							<script>if ak.ai() then return end
-if IsTargetted(matches[2]) then
-  if affstrack.score.blisters &gt; 0 then
-    ak.flameon("additive")
-  else
-    OppGainedAff("blisters")
-  end
-end
-</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^The incandescent might of Elemental Fire filling you, you command (\w+) to burn from within\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Air 1</name>
-							<script>if ak.ai() then return end
-local aff = "asthma"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^(\w+) clutches at \w+ throat as \w+ gasps for breath\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Air 2</name>
-							<script>if ak.ai() then return end
-local aff = "sensitivity"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^A vicious wind rises, lashing and flaying at the body of (\w+) to leave \w+ sensitive and raw\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-						<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-							<name>Air 3</name>
-							<script>if ak.ai() then return end
-local aff = "healthleech"
-if IsTargetted(matches[2]) then
-   OppGainedAff(aff)
-end</script>
-							<triggerType>0</triggerType>
-							<conditonLineDelta>0</conditonLineDelta>
-							<mStayOpen>0</mStayOpen>
-							<mCommand></mCommand>
-							<packageName></packageName>
-							<mFgColor>#ff0000</mFgColor>
-							<mBgColor>#ffff00</mBgColor>
-							<mSoundFile></mSoundFile>
-							<colorTriggerFgColor>#000000</colorTriggerFgColor>
-							<colorTriggerBgColor>#000000</colorTriggerBgColor>
-							<regexCodeList>
-								<string>^A dreadful pallor overcomes the features of (\w+)\.$</string>
-							</regexCodeList>
-							<regexCodePropertyList>
-								<integer>1</integer>
-							</regexCodePropertyList>
-						</Trigger>
-					</TriggerGroup>
-				</TriggerGroup>
 			</TriggerGroup>
 			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Aff Calling</name>
@@ -14309,26 +13883,6 @@ end</script>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>7</integer>
-				</regexCodePropertyList>
-			</Trigger>
-			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>Parry location</name>
-				<script>Ltrack.limbs.parrying = Ltrack.lmibs.hitLimb</script>
-				<triggerType>0</triggerType>
-				<conditonLineDelta>0</conditonLineDelta>
-				<mStayOpen>0</mStayOpen>
-				<mCommand></mCommand>
-				<packageName></packageName>
-				<mFgColor>#ff0000</mFgColor>
-				<mBgColor>#ffff00</mBgColor>
-				<mSoundFile></mSoundFile>
-				<colorTriggerFgColor>#000000</colorTriggerFgColor>
-				<colorTriggerBgColor>#000000</colorTriggerBgColor>
-				<regexCodeList>
-					<string>^(\w+) parries the attack with a deft manoeuvre.$</string>
-				</regexCodeList>
-				<regexCodePropertyList>
-					<integer>1</integer>
 				</regexCodePropertyList>
 			</Trigger>
 		</TriggerGroup>
@@ -31541,15 +31095,6 @@ Ltrack.totalaffs = 0
 Ltrack.kelpscore = 0
 Ltrack.ginsengscore = 0
 Ltrack.mentalscore = 0
-Ltrack.affs = {}
-Ltrack.limbs = {}
-Ltrack.limbs.hitLimb = ''
-Ltrack.limbs.applyOrder = {
-  ['head'] = {'calcifiedhead', 'head'},
-  ['arms'] = {'leftarm', 'rightarm'},
-  ['legs'] = {'leftleg', 'rightleg'},
-  ['torso'] = {'internalbleeding', 'calcifiedtorso', 'torso'}
-}
 Ltrack.envenomed = {}
 Ltrack.en = {}
 Ltrack.defs = {shield = false, rebounding = false, curseward = false, prism = false}
@@ -31566,8 +31111,6 @@ Ltrack.score = {
                 ["empimp"]    = 0,
                 ["empman"]    = 0,
                 ["crescendo"] = 0,
-                ['crackedribs'] = 0,
-                ['frostbite']   = 0,
                 ['scrambledbrains'] = 0,
                 ['reave']     = 0,
                 ["crusade"]   = 0,
@@ -31771,10 +31314,10 @@ Ltrack.score = {
         }
         
         Ltrack.applies = {
-                ["body"]  = {"anorexia","frozen", "selarnia", 'burning'},
-                ["skin"]  = {"anorexia", "crippledarm", "crippledleg","frozen","selarnia", "frostbite"},
-                ["torso"] = {"anorexia", "torso", "hypothermia","selarnia", 'calcifiedtorso'},
-                ["head"]  = {"stuttering","head","crushedthroat", 'calcifiedhead' },
+                ["body"]  = {"anorexia","frozen","aflame","selarnia"},
+                ["skin"]  = {"anorexia", "crippledarm", "crippledleg","frozen","selarnia"},
+                ["torso"] = {"anorexia", "torso", "aflame", "hypothermia","selarnia"},
+                ["head"]  = {"stuttering","head","crushedthroat", },
                 ["arms"]  = {"crippledarm", "rightarm", "leftarm"},
                 ["legs"]  = {"crippledleg","rightleg","leftleg"},
                 ["ears"]  = {"scalded","head"}
@@ -31830,6 +31373,7 @@ Ltrack.score = {
                 "healthleech",
                 "haemophilia",
                 "clumsiness",
+                "aflame",
                 "paranoia",
                 "peace",
                 "vertigo",
@@ -31890,7 +31434,6 @@ Ltrack.score = {
                 "tenderskin",
                 "guilt",
                 "fulminated",
-                "burning",
         }
  
         Ltrack.restore = {
@@ -31938,13 +31481,7 @@ Ltrack.score = {
     if table.contains(tbl, item) then return end
     table.insert(tbl, item)
   end
-  
-  function table.vremove(tbl, value)
-    display(tbl)
-    if table.contains(tbl, value) then
-      table.remove(tbl, table.index_of(tbl, value))
-    end
-  end
+
 
   function Ltrack.debug(msg)
     if Ltrack.debugMsg ~= true then return end
@@ -31958,15 +31495,14 @@ Ltrack.score = {
 				<packageName></packageName>
 				<script>function Ltrack.gainedAff(...)
   local affs = {...}
-
-  for _, aff in pairs(affs) do
-    Ltrack.debug('gained '..aff)
+  for _,aff in pairs(affs) do
+    Ltrack.debug(aff)
     if Ltrack.score[aff:lower()] then
       if aff:lower() == 'sensitivity' and Ltrack.score.deaf == 100 then
         Ltrack.lostAff('deaf')
       else
         Ltrack.score[aff:lower()] = 100
-        table.insertOnce(Ltrack.affs, aff:lower()) -- Adding to aff call list
+        table.insert(Ltrack.affs, aff:lower()) -- Adding to aff call list
       end
     end
   end
@@ -31976,9 +31512,7 @@ end
 
 function Ltrack.lostAff(...)
   local affs = {...}
-  
   for _, aff in pairs(affs) do
-  Ltrack.debug('lost '..aff)
     if Ltrack.score[aff:lower()] then
       Ltrack.score[aff:lower()] = 0
     end
@@ -32095,7 +31629,7 @@ function Ltrack.backTrack(method)
           end
         end
         
-        if table.contains(tracked, 'impatience') and #ret &lt;= 2 then
+        if table.contains(tracked, 'impatience') and ret &lt;= 2 then
           Ltrack.lostAff('impatience')
         end
     end
@@ -32156,8 +31690,7 @@ function Ltrack.ate(cure)
   Ltrack.lastEaten = cure
   Ltrack.lastMethod = 'ate'
   
-    -- Giving the 'aff' deafness to be cured with sensitivity
-    -- Yeah I know it is weird
+
     if cure == 'hawthorn' or cure == 'calamine' then
        Ltrack.gainedAff('deaf')
        raiseEvent('affsUpdated', aff)
@@ -32194,7 +31727,8 @@ function Ltrack.ate(cure)
   
   Ltrack.backTrack('ate')
   
-
+  -- Giving the 'aff' deafness to be cured with sensitivity
+  -- Yeah I know it is weird
 
   
   raiseEvent('affsUpdated', aff)
@@ -32241,34 +31775,6 @@ end
 
 
 function Ltrack.applied(where)
-  local ret = {};
-  local score = Ltrack.score;
-  Ltrack.setTracked()
-  Ltrack.debug(where)
-  for _,aff in pairs(Ltrack.applies[where]) do
-    if score[aff] &gt; 0 then
-      table.insert(ret, aff)
-    end  
-  end
-    
-  local delayedCures = {'internalbleeding', 'calcifiedtorso', 'calcifiedhead'}
-  
- 
-  for _, aff in pairs(Ltrack.limbs.applyOrder[where]) do
-    if table.contains(ret, aff) then
-      if table.contains(delayedCures, aff) then
-        Ltrack.debug(aff.. ' delayed')
-        tempTimer(3.5, function() Ltrack.lostAff(aff) end)
-        break
-      else
-        Ltrack.debug(aff)
-        Ltrack.lostAff(aff)
-      break
-     end
-    end
-  end
-  
-  
   raiseEvent('affsUpdated', aff)
 end
 
@@ -32318,8 +31824,6 @@ function Ltrack.hardreset()
     for aff, score in pairs(Ltrack.score) do
       Ltrack.score[aff] = 0
     end
-  Ltrack.score.deaf = 100
-  Ltrack.score.blind = 100
   Ltrack.totalaffs = 0
   Ltrack.kelpscore = 0
   Ltrack.ginsengscore = 0
@@ -32335,6 +31839,7 @@ function Ltrack.totalAffs()
   
     for aff,score in pairs(Ltrack.score) do
       if Ltrack.score[aff] &gt; 0 then
+        Legacy.echo(aff)
         table.insert(temp, aff)
       end
       
@@ -32378,16 +31883,9 @@ end
 
 
 function Ltrack.affCall()
-  local ignoreAffs = {'deaf', 'blind', 'rightarm', 'rightleg', 'leftarm', 'leftleg'}
   if Ltrack.callAffs ~= true then return end  
-
-  for _, aff in pairs(ignoreAffs) do
-    if table.contains(Ltrack.affs, aff) then
-      table.vremove(Ltrack.affs, aff)
-    end
-  end
   if table.size(Ltrack.affs) == 0 then return end
-  send('pt '..target..' hit with '..table.concat(Ltrack.affs, ' '))
+  send('pt '..target..' hit with '..table.concat(Ltrack.affs, ', '))
   Ltrack.affs = {}
 end
 
@@ -32442,9 +31940,9 @@ end</script>
 				<Script isActive="yes" isFolder="no">
 					<name>Priest</name>
 					<packageName></packageName>
-					<script> Ltrack.priest = Ltrack.priest or {}
- Ltrack.priest.usedHellsight = false
- Ltrack.priest.usedWrath = false</script>
+					<script> -- Ltrack.priest = Ltrack.priest or {}
+ -- Ltrack.priest.usedHellsight = false
+ -- Ltrack.priest.usedWrath = false</script>
 					<eventHandlerList />
 				</Script>
 				<Script isActive="yes" isFolder="no">
@@ -32487,17 +31985,10 @@ local resConvert = {
     ["none"] = 0
   }
   
-  --Used GMCP to track resonance states
 function Ltrack.magi.resTracking()
   for _,v in pairs(gmcp.Char.Vitals.charstats) do
    if v:match("rair:") then
        Ltrack.magi.resonance['air'] = resConvert[string.gsub(gmcp.Char.Vitals.charstats[_], "rair: ", "")]
-   elseif v:match("rfire:") then
-       Ltrack.magi.resonance['fire'] = resConvert[string.gsub(gmcp.Char.Vitals.charstats[_], "rfire: ", "")]
-   elseif v:match("rwater:") then
-       Ltrack.magi.resonance['water'] = resConvert[string.gsub(gmcp.Char.Vitals.charstats[_], "rwater: ", "")]
-   elseif v:match("rearth:") then
-       Ltrack.magi.resonance['earth'] = resConvert[string.gsub(gmcp.Char.Vitals.charstats[_], "rarth: ", "")]
    end   
   end
 end
@@ -34733,8 +34224,6 @@ if score.weariness &lt; 50 then
     Legacy.Q.free('stand/wield dagger shield/shadow mutilate '..target)
   elseif (instill == 'madness' or instill == 'depression') and (score.timeloop &lt; 100 and score.slickness &gt; 0) and v1 ~= 'slike' then
     Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with '..instill..'/chrono loop/shadow '..swing..' '..target..'/assess '..target)
-  elseif score.paralysis &lt; 100 and score.slickness &gt; 0 and score.asthma &gt; 50 and score.impatience &gt; 0 then
-    Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with leech/shadow '..swing..' '..target..' curare/assess '..target)
   else
     Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with '..instill..'/shadow '..swing..' '..target..' '..v1..'/assess '..target)
   end
@@ -35105,31 +34594,13 @@ registerAnonymousEventHandler("sysInstallPackage", myScriptInstalled)</script>
   
   
   TODO:
+    Make stack tracking for kelp, ginseng, mentals
     Do something to track blindness?
-    Salve tracking and curing prio make sure left cures before right
-    Make sure to double check new affs like frostbite, crackedribs and etc to make sure we have the cures listed
-    Make sure to sort the score table alphabetically
-    Make DW tracking to tell when the next hit would hit capstone
+    
     
   NOTES:
     Anorexia is included in mentalscore, but is not included in the focus table, because it is backtracked only
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     Votaries,
-     
-     The time has come to crusade the Underworld. The Sultana wishes for us to bring them Her Light.
-     I believe this would be a good oppourtunity for you all to show us what you have learned.
-     Work amongst yourselves to create a ritual to Safeguard those who would guard the entrance to the Underworld.
-     The Aarashi are all familiar with this sort of ritual, feel free to ask any of us for guidance should you need it.
-     I will give you very little other instruction as I would like to see what you all are capable of.
-                        
+                          
 ]]
 
 

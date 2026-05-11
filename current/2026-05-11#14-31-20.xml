@@ -11962,29 +11962,6 @@ Ltrack.defs.rebounding = true</script>
 						</regexCodePropertyList>
 					</Trigger>
 				</TriggerGroup>
-				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-					<name>Party Aff Follow</name>
-					<script>Legacy.echo('help')
-if not Ltrack.isTarget(matches[2]) then return end
-local affs = matches[3]:split(' ')
-</script>
-					<triggerType>0</triggerType>
-					<conditonLineDelta>0</conditonLineDelta>
-					<mStayOpen>0</mStayOpen>
-					<mCommand></mCommand>
-					<packageName></packageName>
-					<mFgColor>#ff0000</mFgColor>
-					<mBgColor>#ffff00</mBgColor>
-					<mSoundFile></mSoundFile>
-					<colorTriggerFgColor>#000000</colorTriggerFgColor>
-					<colorTriggerBgColor>#000000</colorTriggerBgColor>
-					<regexCodeList>
-						<string>^\(Party\): \w+ says, "(\w+) hit with (.+)."$</string>
-					</regexCodeList>
-					<regexCodePropertyList>
-						<integer>1</integer>
-					</regexCodePropertyList>
-				</Trigger>
 			</TriggerGroup>
 			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Classes</name>
@@ -12001,7 +11978,7 @@ local affs = matches[3]:split(' ')
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList />
 				<regexCodePropertyList />
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<TriggerGroup isActive="no" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Alchemist</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -12646,7 +12623,7 @@ end</script>
 						</regexCodePropertyList>
 					</Trigger>
 				</TriggerGroup>
-				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<TriggerGroup isActive="no" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Depthswalker</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -14313,7 +14290,7 @@ end</script>
 			</Trigger>
 			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Parry location</name>
-				<script>Ltrack.limbs.parrying = Ltrack.lmibs.hitLimb</script>
+				<script></script>
 				<triggerType>0</triggerType>
 				<conditonLineDelta>0</conditonLineDelta>
 				<mStayOpen>0</mStayOpen>
@@ -31773,8 +31750,8 @@ Ltrack.score = {
         Ltrack.applies = {
                 ["body"]  = {"anorexia","frozen", "selarnia", 'burning'},
                 ["skin"]  = {"anorexia", "crippledarm", "crippledleg","frozen","selarnia", "frostbite"},
-                ["torso"] = {"anorexia", "torso", "hypothermia","selarnia", 'calcifiedtorso'},
-                ["head"]  = {"stuttering","head","crushedthroat", 'calcifiedhead' },
+                ["torso"] = {"anorexia", "torso", "hypothermia","selarnia"},
+                ["head"]  = {"stuttering","head","crushedthroat", },
                 ["arms"]  = {"crippledarm", "rightarm", "leftarm"},
                 ["legs"]  = {"crippledleg","rightleg","leftleg"},
                 ["ears"]  = {"scalded","head"}
@@ -31938,13 +31915,7 @@ Ltrack.score = {
     if table.contains(tbl, item) then return end
     table.insert(tbl, item)
   end
-  
-  function table.vremove(tbl, value)
-    display(tbl)
-    if table.contains(tbl, value) then
-      table.remove(tbl, table.index_of(tbl, value))
-    end
-  end
+
 
   function Ltrack.debug(msg)
     if Ltrack.debugMsg ~= true then return end
@@ -31960,13 +31931,13 @@ Ltrack.score = {
   local affs = {...}
 
   for _, aff in pairs(affs) do
-    Ltrack.debug('gained '..aff)
+    Ltrack.debug(aff)
     if Ltrack.score[aff:lower()] then
       if aff:lower() == 'sensitivity' and Ltrack.score.deaf == 100 then
         Ltrack.lostAff('deaf')
       else
         Ltrack.score[aff:lower()] = 100
-        table.insertOnce(Ltrack.affs, aff:lower()) -- Adding to aff call list
+        table.insert(Ltrack.affs, aff:lower()) -- Adding to aff call list
       end
     end
   end
@@ -31976,9 +31947,7 @@ end
 
 function Ltrack.lostAff(...)
   local affs = {...}
-  
   for _, aff in pairs(affs) do
-  Ltrack.debug('lost '..aff)
     if Ltrack.score[aff:lower()] then
       Ltrack.score[aff:lower()] = 0
     end
@@ -32095,7 +32064,7 @@ function Ltrack.backTrack(method)
           end
         end
         
-        if table.contains(tracked, 'impatience') and #ret &lt;= 2 then
+        if table.contains(tracked, 'impatience') and ret &lt;= 2 then
           Ltrack.lostAff('impatience')
         end
     end
@@ -32244,7 +32213,7 @@ function Ltrack.applied(where)
   local ret = {};
   local score = Ltrack.score;
   Ltrack.setTracked()
-  Ltrack.debug(where)
+    Ltrack.debug(where)
   for _,aff in pairs(Ltrack.applies[where]) do
     if score[aff] &gt; 0 then
       table.insert(ret, aff)
@@ -32253,15 +32222,13 @@ function Ltrack.applied(where)
     
   local delayedCures = {'internalbleeding', 'calcifiedtorso', 'calcifiedhead'}
   
- 
+  
   for _, aff in pairs(Ltrack.limbs.applyOrder[where]) do
     if table.contains(ret, aff) then
       if table.contains(delayedCures, aff) then
-        Ltrack.debug(aff.. ' delayed')
-        tempTimer(3.5, function() Ltrack.lostAff(aff) end)
+        tempTimer(3.5, [[ Ltrack.lostAff(aff)]])
         break
       else
-        Ltrack.debug(aff)
         Ltrack.lostAff(aff)
       break
      end
@@ -32318,8 +32285,6 @@ function Ltrack.hardreset()
     for aff, score in pairs(Ltrack.score) do
       Ltrack.score[aff] = 0
     end
-  Ltrack.score.deaf = 100
-  Ltrack.score.blind = 100
   Ltrack.totalaffs = 0
   Ltrack.kelpscore = 0
   Ltrack.ginsengscore = 0
@@ -32378,16 +32343,9 @@ end
 
 
 function Ltrack.affCall()
-  local ignoreAffs = {'deaf', 'blind', 'rightarm', 'rightleg', 'leftarm', 'leftleg'}
   if Ltrack.callAffs ~= true then return end  
-
-  for _, aff in pairs(ignoreAffs) do
-    if table.contains(Ltrack.affs, aff) then
-      table.vremove(Ltrack.affs, aff)
-    end
-  end
   if table.size(Ltrack.affs) == 0 then return end
-  send('pt '..target..' hit with '..table.concat(Ltrack.affs, ' '))
+  send('pt '..target..' hit with '..table.concat(Ltrack.affs, ', '))
   Ltrack.affs = {}
 end
 
@@ -34733,8 +34691,6 @@ if score.weariness &lt; 50 then
     Legacy.Q.free('stand/wield dagger shield/shadow mutilate '..target)
   elseif (instill == 'madness' or instill == 'depression') and (score.timeloop &lt; 100 and score.slickness &gt; 0) and v1 ~= 'slike' then
     Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with '..instill..'/chrono loop/shadow '..swing..' '..target..'/assess '..target)
-  elseif score.paralysis &lt; 100 and score.slickness &gt; 0 and score.asthma &gt; 50 and score.impatience &gt; 0 then
-    Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with leech/shadow '..swing..' '..target..' curare/assess '..target)
   else
     Legacy.Q.free('stand/wield scythe shield/wipe scythe/shadow attune '..target..' to degeneration/shadow instill scythe with '..instill..'/shadow '..swing..' '..target..' '..v1..'/assess '..target)
   end
@@ -35109,27 +35065,10 @@ registerAnonymousEventHandler("sysInstallPackage", myScriptInstalled)</script>
     Salve tracking and curing prio make sure left cures before right
     Make sure to double check new affs like frostbite, crackedribs and etc to make sure we have the cures listed
     Make sure to sort the score table alphabetically
-    Make DW tracking to tell when the next hit would hit capstone
     
   NOTES:
     Anorexia is included in mentalscore, but is not included in the focus table, because it is backtracked only
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     Votaries,
-     
-     The time has come to crusade the Underworld. The Sultana wishes for us to bring them Her Light.
-     I believe this would be a good oppourtunity for you all to show us what you have learned.
-     Work amongst yourselves to create a ritual to Safeguard those who would guard the entrance to the Underworld.
-     The Aarashi are all familiar with this sort of ritual, feel free to ask any of us for guidance should you need it.
-     I will give you very little other instruction as I would like to see what you all are capable of.
-                        
+                          
 ]]
 
 

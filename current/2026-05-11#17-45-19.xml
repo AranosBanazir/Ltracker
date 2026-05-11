@@ -11966,8 +11966,8 @@ Ltrack.defs.rebounding = true</script>
 					<name>Party Aff Follow</name>
 					<script>Legacy.echo('help')
 if not Ltrack.isTarget(matches[2]) then return end
-local affs = matches[3]:split(' ')
-</script>
+local affs = matches[3]:gsub(',', ' '):split(' ')
+display(affs)</script>
 					<triggerType>0</triggerType>
 					<conditonLineDelta>0</conditonLineDelta>
 					<mStayOpen>0</mStayOpen>
@@ -11979,7 +11979,7 @@ local affs = matches[3]:split(' ')
 					<colorTriggerFgColor>#000000</colorTriggerFgColor>
 					<colorTriggerBgColor>#000000</colorTriggerBgColor>
 					<regexCodeList>
-						<string>^\(Party\): \w+ says, "(\w+) hit with (.+)."$</string>
+						<string>^\(Party\):  (\w+) says, "(\w+) hit with (.+)."$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
