@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Trades</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Milling</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Milling Complete</name>
+					<script>send("queue addclear free get 10 ink from mill")
+send("queue addclear free inr 10 ink")
+deleteFull()
+Legacy.Settings.Trades.Milling.status = false
+</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>With a satisfying rattle, you note that the milling is complete</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>2</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Millings count</name>
+					<script>if matches[2] == "a" then
+Legacy.Settings.Trades.Milling.Inks[matches[3]].num = Legacy.Settings.Trades.Milling.Inks[matches[3]].num + 1
+else
+Legacy.Settings.Trades.Milling.Inks[matches[3]].num = Legacy.Settings.Trades.Milling.Inks[matches[3]].num + matches[2]
+end
+deleteFull()
+raiseEvent("MillComplete")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You take (\d+|a) (\w+) ink(?:s)? from (.+)\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Gag milling</name>
+					<script>deleteFull()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>Alias "milling" will now execute:</string>
+						<string>You must regain balance first.</string>
+						<string>^You put (.+) mill.</string>
+						<string>Carefully closing the lid on an oaken mill,</string>
+						<string>^There are no more (\w+) inks there\.$</string>
+						<string>Gaining momentum, you turn the handle on an oaken mill faster,</string>
+						<string>You give the handle a final turn before folding it back,</string>
+						<string>An oaken mill doesn't contain that.</string>
+						<string>^There are no more .+ there.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>2</integer>
+						<integer>3</integer>
+						<integer>1</integer>
+						<integer>2</integer>
+						<integer>1</integer>
+						<integer>2</integer>
+						<integer>2</integer>
+						<integer>3</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Balance Recovery: Milling</name>
+					<script>if Legacy.Settings.Trades.Milling.status == true then
+echo("\n")
+deleteFull()
+end</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>You have recovered balance on all limbs.</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>3</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>out of reagents</name>
+					<script>local reagents = {"lumic", "bladder", "chitin", "clay", "flakes", "horn", "scales", "tongue", "tooth"}
+
+for k,v in pairs(reagents) do
+  send("get 10 "..v.." from mill")
+end
+tempTimer(2,function()
+Legacy.echo("You do not have enough reagents to make "..Legacy.Settings.Trades.Milling.millFor:title().." Inks!")
+Legacy.Settings.Trades.Milling.Inks[Legacy.Settings.Trades.Milling.millFor] = nil
+Legacy.Settings.Trades.Milling.millFor = nil
+Legacy.Trades.Milling.Mill()
+end)</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>Your mill does not hold the required amount of reagents to mill that.</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>3</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Conjuration</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Balance Recovery: Conjuration</name>
+					<script>local Items  = Legacy.Trades.Conjuration.Items
+local item   = Legacy.Settings.Trades.Conjuration.conjureFor:title()
+local action = Legacy.Settings.Trades.Conjuration.currentaction
+local Steps  = Legacy.Settings.Trades.Conjuration.Steps
+
+if Legacy.Settings.Trades.Conjuration.status == true then
+if table.size(Legacy.Settings.Trades.Conjuration.Items) &gt; 0 then
+  if action &lt;= #Items[item].Actions then
+    if Items[item].Actions[action] == "2" then
+      send("queue addclear free "..Steps[Items[item].Actions[action]]..Legacy.Trades.Conjuration.ConjChant())
+      Legacy.Settings.Trades.Conjuration.currentaction = Legacy.Settings.Trades.Conjuration.currentaction + 1
+    else
+      send("queue addclear free "..Steps[Items[item].Actions[action]])
+      Legacy.Settings.Trades.Conjuration.currentaction = Legacy.Settings.Trades.Conjuration.currentaction + 1
+    end
+  else
+    send("queue addclear free end ritual")
+  end
+end
+end
+
+</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>You have recovered balance on all limbs.</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>3</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Conjuration done</name>
+					<script>send("queue addclear free get "..Legacy.Settings.Trades.Conjuration.conjureFor.." from "..Legacy.Settings.Trades.Conjuration.ouroboros2)
+
+Legacy.Settings.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjurFor].num = Legacy.Settings.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjurFor].num + 1
+
+if Legacy.Settings.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjurFor].num == Legacy.Settings.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjurFor].total then
+  Legacy.Settings.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjurFor] = nil
+end
+
+Conjure_Items()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^The ouroboros flashes and (.+) appears within it\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Tarot</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Finished inking</name>
+					<script>deleteFull()
+Legacy.Settings.Trades.Tarot.Cards[Legacy.Settings.Trades.Tarot.inscribeFor].num = Legacy.Settings.Trades.Tarot.Cards[Legacy.Settings.Trades.Tarot.inscribeFor].num + 20
+send("queue add freestand ind "..Legacy.Settings.Trades.Tarot.inscribeFor)
+send("queue add freestand curing on")
+tempTimer(5, [[Legacy.Trades.Tarot.inker()]])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You have successfully inscribed the image of the (.+) on your Tarot card\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>gags</name>
+					<script>deleteFull()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^Wisely preparing yourself beforehand, you lay out the quill and various inks you will need to inscribe the sign of the \w+ into your card\.$</string>
+						<string>Focusing your mind on the task ahead, you block out all extraneous thoughts.</string>
+						<string>^You take up the quill and begin to trace the outline of .+ with careful precision. The slightest mistake will render the card useless\.$</string>
+						<string>Finishing the outline,</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>3</integer>
+						<integer>1</integer>
+						<integer>2</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Decklist rewrite</name>
+					<script>deleteFull()
+Legacy.echo("Successfully inscribed &lt;gold&gt;"..matches[2].." &lt;white&gt;of the &lt;gold&gt;"..matches[3].."&lt;white&gt; card for a total of &lt;gold&gt;"..matches[4].."&lt;white&gt;.")
+</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>#ff0000</mFgColor>
+					<mBgColor>#ffff00</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#000000</colorTriggerFgColor>
+					<colorTriggerBgColor>#000000</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You shuffle (\d+) cards with the image of the (\w+) into your deck, bringing the total stored to (\d+)\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+		</TriggerGroup>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Trades</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Milling</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex></regex>
+				<Alias isActive="yes" isFolder="no">
+					<name>Milling Start</name>
+					<script>if Legacy then
+    
+  function Legacy.Trades.Milling.Ingredients(ink)
+    RiftCheck()
+    local redReagents = {"red clay", "red chitin"}
+    local blueReagents = {"ink bladder", "lumic"}
+    local yellowReagents = {"yellow chitin"}
+    local goldReagents = {"gold flakes"}
+    local commonReagents = {"fish scales"}
+    local uncommonReagents = {"buffalo horn"}
+    local scarceReagents = {"shark tooth"}
+    local rareReagents = {"wyrm tongue"}
+    local ret = ""
+    
+    if Legacy.Settings.Trades.Milling.Inks[ink].total &gt; 5 then
+      if math.floor(Legacy.Settings.Trades.Milling.Inks[ink].total - Legacy.Settings.Trades.Milling.Inks[ink].num) &lt; 5 then
+         Legacy.Trades.Milling.amount = math.floor(Legacy.Settings.Trades.Milling.Inks[ink].total - Legacy.Settings.Trades.Milling.Inks[ink].num)
+      else
+        Legacy.Trades.Milling.amount = 5
+      end
+    else
+     Legacy.Trades.Milling.amount = Legacy.Settings.Trades.Milling.Inks[ink].total
+    end
+    
+    if ink == "red" then
+      for _,v in pairs(redReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+          break
+        else
+          Legacy.echo("You do not have any "..v:title().." for Red ink")
+        end
+      end
+      for _,v in pairs(commonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+    elseif ink == "green" then
+      for _,v in pairs(blueReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+          break
+        else
+          Legacy.echo("You do not have any "..v:title().." for Green ink")
+        end
+      end
+      for _,v in pairs(yellowReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(uncommonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(scarceReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      
+    elseif ink == "black" then
+      for _,v in pairs(blueReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+          break
+        else
+          Legacy.echo("You do not have any "..v:title().." for Green ink")
+        end
+      end
+      for _,v in pairs(yellowReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(uncommonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(scarceReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(commonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      
+    elseif ink == "blue" then
+      for _,v in pairs(uncommonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(blueReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+          break
+        else
+          Legacy.echo("You do not have any "..v:title().." for Blue ink")
+        end
+      end
+      
+    elseif ink == "yellow" then
+      for _,v in pairs(yellowReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(scarceReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      
+    elseif ink == "gold" then
+      for _,v in pairs(goldReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(commonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(uncommonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(scarceReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(rareReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      
+    elseif ink == "purple" then
+      for _,v in pairs(redReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+          break
+        else
+          Legacy.echo("You do not have any "..v:title().." for Purple ink")
+        end
+      end
+      for _,v in pairs(blueReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+        break
+      end
+      for _,v in pairs(commonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(uncommonReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= math.floor(Legacy.Trades.Milling.amount*2) then
+          ret = ret.."/outr "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").."/put "..math.floor(Legacy.Trades.Milling.amount*2).." "..v:gsub(" ", "").." in mill"
+        end
+      end
+      for _,v in pairs(rareReagents) do
+        if table.contains(Legacy.Rift.Reagents, v) and Legacy.Rift.Reagents[v] &gt;= Legacy.Trades.Milling.amount then
+          ret = ret.."/outr "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").."/put "..Legacy.Trades.Milling.amount.." "..v:gsub(" ", "").." in mill"
+        end
+      end
+    end 
+      
+      
+    send("setalias milling "..ret)
+    send("queue add free milling")
+  end
+    
+    function Legacy.Trades.Milling.Mill()
+      if table.size(Legacy.Settings.Trades.Milling.Inks) == 0 then
+        Legacy.echo("&lt;red&gt;No Inks are currently queued.")
+      end
+        for k,v in pairs(Legacy.Settings.Trades.Milling.Inks) do
+          if v.num &lt; v.total then
+            Legacy.Settings.Trades.Milling.status = true
+            Legacy.Settings.Trades.Milling.millFor = tostring(k)
+            Legacy.Trades.Milling.Ingredients(Legacy.Settings.Trades.Milling.millFor)
+            if k == "red" or k == "blue" or k == "yellow" then
+              tempTimer(2.2,[[send("queue add eqbal mill for "..Legacy.Trades.Milling.amount.." "..Legacy.Settings.Trades.Milling.millFor)]])
+            elseif k == "green" or k == "purple" or k == "gold" then
+              tempTimer(5, [[send("queue add eqbal mill for "..Legacy.Trades.Milling.amount.." "..Legacy.Settings.Trades.Milling.millFor)]])
+            elseif k == "black" then
+              tempTimer(10, [[send("queue add eqbal mill for "..Legacy.Trades.Milling.amount.." "..Legacy.Settings.Trades.Milling.millFor)]])
+            end
+            Legacy.echo("&lt;white&gt;You have milled &lt;orange&gt;"..v.num.."&lt;white&gt; of &lt;green&gt;"..v.total.."&lt;white&gt; "..tostring(k).." inks.\n") 
+            break
+          else
+            Legacy.Settings.Trades.Milling.millFor = nil
+            Legacy.echo("Finished milling "..tostring(k):title().." inks.")
+            Legacy.Settings.Trades.Milling.Inks[k] = nil
+            
+          end
+        end
+    end
+    registerAnonymousEventHandler("MillComplete", "Legacy.Trades.Milling.Mill")
+    Legacy.Trades.Milling.Mill()
+  end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^mill$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Queue Inks to be milled</name>
+					<script>if Legacy then
+  
+  if Legacy.Settings.Trades.Milling.Inks[matches[3]] then
+    if matches[3] == "blue" then
+    Legacy.echo("Adjusted your milling queue to &lt;gold&gt;"..matches[2].." &lt;cyan&gt;"..matches[3])
+    elseif matches[3] ~= "black" then
+    Legacy.echo("Adjusted your milling queue to &lt;gold&gt;"..matches[2].." &lt;"..matches[3].."&gt;"..matches[3])
+    else
+    Legacy.echo("Adjusted Adjusted your milling queue to &lt;gold&gt;"..matches[2].." &lt;white&gt;"..matches[3])
+    end
+  else
+    if matches[3] == "blue" then
+      Legacy.echo("Added &lt;gold&gt;"..matches[2].." &lt;cyan&gt;"..matches[3].."&lt;white&gt; to your milling queue")
+    elseif matches[3] ~= "black" then
+      Legacy.echo("Added &lt;gold&gt;"..matches[2].." &lt;"..matches[3].."&gt;"..matches[3].."&lt;white&gt; to your milling queue")
+    else
+      Legacy.echo("Added &lt;gold&gt;"..matches[2].." &lt;white&gt;"..matches[3].." to your miilling queue")
+    end
+  end
+  Legacy.Settings.Trades.Milling.Inks[matches[3]] = {["num"] = 0, ["total"] = tonumber(matches[2])}
+end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^mill\s?(\d+)\s?(red|green|gold|black|blue|yellow|purple)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Milling Stop</name>
+					<script>Legacy.Settings.Trades.Milling.Inks = {}
+Legacy.echo("&lt;red&gt;Cancled the Milling process.")
+Legacy.Settings.Trades.Milling.status = false</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^millstop$</regex>
+				</Alias>
+			</AliasGroup>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Conuration</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex></regex>
+				<Alias isActive="yes" isFolder="no">
+					<name>Queue Items</name>
+					<script>if Legacy.Settings.Trades.Conjuration.ouroboros1 == nil then
+  for k,v in pairs(gmcp.Char.Items.List.items) do
+    if v.name == "a beguiling ouroboros" then
+      Legacy.Settings.Trades.Conjuration.ouroboros1 = v.id
+      break
+    end
+  end
+end
+
+if Legacy.Settings.Trades.Conjuration.ouroboros2 == nil then
+  for k,v in pairs(gmcp.Char.Items.List.items) do
+    if v.name == "a beguiling ouroboros" and v.id ~= Legacy.Settings.Trades.Conjuration.ouroboros1 then
+      Legacy.Settings.Trades.Conjuration.ouroboros2 = v.id
+      break
+    end
+  end
+end
+
+Conjure_Queue(matches[3], matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^conj (\d+) (\w+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Start Conjuring</name>
+					<script>if table.contains(gmcp.Char.Items.List.items, "a beguiling ouroboros") then
+  if Legacy.Settings.Trades.Conjuration.status == false or Legacy.Settings.Trades.Conjuration.status == nil then
+    Conjure_Item()
+    Legacy.Settings.Trades.Conjuration.status = true
+  else
+    Legacy.Settings.Trades.Conjuration.status = false
+    Legacy.echo("Cleared the Conjuring Queue, all done!")
+    Legacy.Settings.Trades.Conjuration.Items = {}
+  end
+
+else
+  Legacy.echo("&lt;red&gt;You must be in the proper area to conjure anything.")    
+end
+</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^conj$</regex>
+				</Alias>
+			</AliasGroup>
+			<Alias isActive="yes" isFolder="no">
+				<name>^butcher$</name>
+				<script>send("wield cleaver shield;butcher corpse for reagent")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^butcher$</regex>
+			</Alias>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Tarot</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex></regex>
+				<Alias isActive="yes" isFolder="no">
+					<name>queue inscribing</name>
+					<script>Legacy.Trades.Tarot = Legacy.Trades.Tarot or {}
+Legacy.Settings.Trades.Tarot = Legacy.Settings.Trades.Tarot or {}
+Legacy.Settings.Trades.Tarot.Cards = Legacy.Settings.Trades.Tarot.Cards or {}
+Legacy.Settings.Trades.Tarot.Cards[matches[3]] = {num = 0, total = tonumber(matches[2])}
+if Legacy.Settings.Trades.Tarot.Cards[matches[3]] then
+Legacy.echo("Adjusted your &lt;gold&gt;"..matches[3]:title().."&lt;white&gt; cards to &lt;gold&gt;"..matches[2].."&lt;white&gt; in your Inscribing queue.")
+
+else
+Legacy.echo("Added &lt;gold&gt;"..matches[2].." "..matches[3]:title().."&lt;white&gt; cards to your Inscribing queue.")
+end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^inscribe (\d+) (\w+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Start sketching the queue</name>
+					<script>if Legacy then
+  if Legacy.Settings.Trades.Tarot.status == false or Legacy.Settings.Trades.Tarot.status == nil then
+    Legacy.Settings.Trades.Tarot.status = true
+    function Legacy.Trades.Tarot.inker()
+      if table.size(Legacy.Settings.Trades.Tarot.Cards) == 0 then Legacy.echo("&lt;red&gt;You have no current cards queued for inscribing.") Legacy.Settings.Trades.Tarot.status = false return end
+      for k,v in pairs(Legacy.Settings.Trades.Tarot.Cards) do
+        if v.num &lt; v.total then
+          Legacy.Settings.Trades.Tarot.inscribeFor = tostring(k)
+          send("queue add freestand curing off")
+          send("queue add freestand inscribe blank with 20 "..Legacy.Settings.Trades.Tarot.inscribeFor)
+          break
+        elseif v.num &gt;= v.total then
+          Legacy.echo("Finished inking &lt;gold&gt;"..v.total.." "..k:title().."&lt;white&gt; cards.")
+          Legacy.Settings.Trades.Tarot.Cards[k] = nil
+        end
+      end
+    end
+    Legacy.Trades.Tarot.inker()
+  else
+    Legacy.Settings.Trades.Tarot.status = false
+    Legacy.Settings.Trades.Tarot.Cards = {}
+    Legacy.echo("&lt;red&gt;Stopped inscribing new cards.")
+    Legacy.echo("&lt;red&gt;Cleared your current Inscribing queue.")
+  end 
+end</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^inscribe$</regex>
+				</Alias>
+			</AliasGroup>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Trades</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>Trades Setup</name>
+				<packageName></packageName>
+				<script>function Trades_Setup()
+if not gmcp.Char then
+  tempTimer(3, Trades_Setup())
+  return
+end
+  Legacy.Trades = Legacy.Trades or {}
+  Legacy.Settings.Trades = Legacy.Settings.Trades or {}
+  
+  --Milling
+  Legacy.Trades.Milling = Legacy.Trades.Milling or {}
+  Legacy.Settings.Trades.Milling = Legacy.Settings.Trades.Milling or {}
+  Legacy.Settings.Trades.Milling.Inks = {}
+  
+  --Tarot
+  Legacy.Trades.Tarot = Legacy.Trades.Tarot or {}
+  Legacy.Settings.Trades.Tarot = Legacy.Settings.Trades.Tarot or {}
+  Legacy.Settings.Trades.Tarot.Cards = Legacy.Settings.Trades.Tarot.Cards or {}
+  
+  --Augmentation
+  Legacy.Trades.Augmentation = Legacy.Trades.Augmentation or {}
+  Legacy.Settings.Trades.Augmentation = Legacy.Settings.Trades.Augmentation or {}
+  Legacy.Settings.Trades.Augmentation.status = false
+  Legacy.Settings.Trades.Augmentation.Items = {}
+  Legacy.Settings.Trades.Augmentation.itemID = ""
+  Legacy.Settings.Trades.Augmentation.augmentFor = Legacy.Settings.Trades.Augmentation.augmentFor or ""
+  Legacy.Settings.Trades.Augmentation.currentaction = 1
+  Legacy.Trades.Augmentation.AugChant = function()
+    if Legacy.Settings.Trades.Augmentation.augmentFor == "" then return "" end
+    if Legacy.Settings.Trades.Augmentation.augmentFor then
+      if Legacy.Settings.Trades.Augmentation.augmentFor == "firelash" then
+        return "fo icti re eschle lok ast suh hrat"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "flame" then
+        return "flet lhar abe minlo eec"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "key" then
+        return "krolop escit yall"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "knife" then
+        return "Keef nitash idca feef enla"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "mushroom" then
+        return "mil usra shal hract reed oom oon mez"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "concealment" then
+        return "aisyalam"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "bauble" then
+        return "disei stalla rapwah cosoth tu"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "monolith" then
+        return "me ol nok oloth lilo ib te het"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "negation" then
+        return "zool ekilthia requi oben"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "cube" then
+        return "Dara acti me prishna eni not"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "stasis" then
+        return "stasis statorium"
+      elseif Legacy.Settings.Trades.Augmentation.augmentFor == "orb" then
+        return "solip preena het epi re enla"
+      else
+        return ""
+      end
+    end
+  end
+  
+  Legacy.Settings.Trades.Augmentation.Steps = {
+    ["1"] = "RING BELL",
+    ["2"] = "CHANT ",
+    ["3"] = "BANG DRUM",
+    ["4"] = "SPIN AROUND THRICE",
+    ["5"] = "LIGHT CANDLE",
+    ["6"] = "CLAP HANDS",
+    ["7"] = "BURN THE POLYGON",
+    ["8"] = "POINT SWORD",
+    ["9"] = "BURN INCENSE",
+    ["10"] = "PLAY HORN",
+    ["11"] = "STRUM LUTE",
+    ["12"] = "FLIPCOIN",
+    ["13"] = "ROLL DICE",
+    ["14"] = "WAVE ARMS",
+    ["15"] = "CRUSH KOLA",
+    ["16"] = "WAVE FEATHER",
+    ["17"] = "SQUARE THE CIRCLE",
+    ["18"] = "chant mortis troy tenkla",
+    ["19"] = "chant mortis troy tenklu",
+    ["20"] = "chant mortis troy tenkli", 
+  }
+  
+  Legacy.Trades.Augmentation.Items = {
+    ["firelash"] = {Actions = {"3", "6", "9", "8", "5", "2", "1", "4", "7", "13", "13", "13" }, Comms = {["gold"] = 1, ["silver"] = 1, ["dust"] = 2}, createsyntax = "BEGIN ENCHANTMENT OF "..Legacy.Settings.Trades.Augmentation.itemID.." WITH FIRELASH",},
+    }
+    
+  
+  --Conjuration
+  Legacy.Trades.Conjuration = Legacy.Trades.Conjuration or {}
+  Legacy.Settings.Trades.Conjuration = Legacy.Settings.Trades.Conjuration or {}
+  Legacy.Settings.Trades.Conjuration.status = false
+  Legacy.Settings.Trades.Conjuration.Items = {}
+  Legacy.Settings.Trades.Conjuration.conjureFor = Legacy.Settings.Trades.Conjuration.conjurFor or ""
+  Legacy.Settings.Trades.Conjuration.currentaction = 1
+  Legacy.Trades.Conjuration.ConjChant = function()
+    if Legacy.Settings.Trades.Conjuration.conjureFor == "" then return "" end
+    if Legacy.Settings.Trades.Conjuration.conjureFor then
+      if Legacy.Settings.Trades.Conjuration.conjureFor == "fist" then
+        return "fartak ishla spooz tran"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "flame" then
+        return "flet lhar abe minlo eec"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "key" then
+        return "krolop escit yall"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "knife" then
+        return "Keef nitash idca feef enla"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "mushroom" then
+        return "mil usra shal hract reed oom oon mez"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "concealment" then
+        return "aisyalam"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "bauble" then
+        return "disei stalla rapwah cosoth tu"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "monolith" then
+        return "me ol nok oloth lilo ib te het"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "negation" then
+        return "zool ekilthia requi oben"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "cube" then
+        return "Dara acti me prishna eni not"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "stasis" then
+        return "stasis statorium"
+      elseif Legacy.Settings.Trades.Conjuration.conjureFor == "orb" then
+        return "solip preena het epi re enla"
+      else
+        return ""
+      end
+    end
+  end
+  
+  Legacy.Settings.Trades.Conjuration.Steps = {
+    ["1"] = "RING BELL",
+    ["2"] = "CHANT ",
+    ["3"] = "BANG DRUM",
+    ["4"] = "SPIN AROUND THRICE",
+    ["5"] = "LIGHT CANDLE",
+    ["6"] = "CLAP HANDS",
+    ["7"] = "BURN THE POLYGON",
+    ["8"] = "POINT SWORD",
+    ["9"] = "BURN INCENSE",
+    ["10"] = "PLAY HORN",
+    ["11"] = "STRUM LUTE",
+    ["12"] = "FLIPCOIN",
+    ["13"] = "ROLL DICE",
+    ["14"] = "WAVE ARMS",
+    ["15"] = "CRUSH KOLA",
+    ["16"] = "WAVE FEATHER",
+    ["17"] = "SQUARE THE CIRCLE",
+    ["18"] = "chant mortis troy tenkla",
+    ["19"] = "chant mortis troy tenklu",
+    ["20"] = "chant mortis troy tenkli", 
+  }
+  
+  Legacy.Trades.Conjuration.Items = {
+    ["Worrystone"] = {Actions = {"13", "13", "13", "13", "13", "12", "12", "12", "12", "12", "4", "16", "17"}, Comms = {["ice"] = 1, ["goldbar"] = 1, ["silver"] = 1, ["horn"] = 1, ["dust"] = 1}, createsyntax = "BEGIN CREATION OF WORRYSTONE",},
+    ["Fist"] = {Actions = {"2", "2", "2", "1"}, Comms = {["silver"] = 1, ["horn"] = 2}, createsyntax = "BEGIN CREATION OF FIST SIGIL"},
+    ["Flame"] = {Actions = {"2", "2", "2", "1"}, Comms = {["silver"] = 1}, createsyntax = "BEGIN CREATION OF FLAME SIGIL"},
+    ["Brooch"] = {Actions = {"18", "19", "20", "6", "6", "6"}, Comms = {["ice"] = 1, ["dust"] = 2, ["horn"] = 1, ["silver"] = 2}, createsyntax = "BEGIN CREATION OF BROOCH OF THOTH"},
+    ["Key"] = {Actions = {"2", "2", "2", "1"}, Comms = {["goldbar"] = 1}, createsyntax = "BEGIN CREATION OF KEY SIGIL"},
+    ["Eye"] = {Actions = {"17", "1"}, Comms = {["obsidian"] = 1}, createsyntax = "BEGIN CREATION OF EYE SIGIL"},
+    ["Knife"] = {Actions = {"2", "2", "2", "1"}, Comms = {["silver"] = 1}, createsyntax = "BEGIN CREATION OF KNIFE SIGIL"},
+    ["Comprehension"] = {Actions = {"10", "10", "10", "9", "16", "1", "13", "13", "4", "9", "15"}, Comms = {["ice"] = 2, ["goldbar"] = 3, ["silver"] = 4, ["horn"] = 3}, createsyntax = "BEGIN CREATION OF NECKLACE OF COMPREHENSION"},
+    ["Mushroom"] = {Actions = {"2", "2", "2", "1"}, Comms = {["ice"] = 1}, createsyntax = "BEGIN CREATION OF MUSHROOM SIGIL"},
+    ["Whirlwind"] = {Actions = {"4", "4", "4", "4", "16", "9", "4", "4", "4", "4"}, Comms = {["silver"] = 1, ["dust"] = 1, ["horn"] = 1}, createsyntax = "BEGIN CREATION OF WHIRLWIND OF VASTAR"},
+    ["Concealment"] = {Actions = {"16", "14", "12", "10", "8", "6", "4", "2", "4", "6", "8", "10", "12", "14", "16"}, Comms = {["silver"] = 5, ["goldbar"] = 1}, createsyntax = "BEGIN CREATION OF ORB OF CONCEALMENT"},
+    ["Bauble"] = {Actions = {"15", "7", "6", "17", "2" }, Comms = {["dust"] = 1}, createsyntax = "BEGIN CREATION OF BAUBLE"},
+    ["Monolith"] = {Actions = {"2", "2", "2", "1"}, Comms = {["goldbar"] = 1, ["silver"] = 1}, createsyntax = "BEGIN CREATION OF MONOLITH SIGIL"},
+    ["Dreamcatcher"] = {Actions = {"14", "9", "17", "5", "11", "11", "11", "1", "1", "1", "8", "8", "11", "11", "11"}, Comms = {["goldbar"] = 2, ["silver"] = 2, ["horn"] = 1}, createsyntax = "BEGIN CREATION OF DREAMCATCHER"},
+    ["Star"] = {Actions = {"11", "1"}, Comms = {["dust"] = 1, ["silver"] = 1}, createsyntax = "BEGIN CREATION OF STAR SIGIL"},
+    ["Negation"] = {Actions = {"1", "1", "1", "5", "15", "7", "8", "2"}, Comms = {["goldbar"] = 1}, createsyntax = "BEGIN CREATION OF GEM OF NEGATION"},
+    ["Cube"] = {Actions = {"2", "2", "2", "1"}, Comms = {["silver"] = 2}, createsyntax = "BEGIN CREATION OF CUBE SIGIL"},
+    ["Pestilence"] = {Actions = {"11", "12", "3", "14", "17", "16", "9", "8", "7", "7", "7", "10", "10", "10", "1", "1", "1", "3", "17", "11"}, Comms = {["silver"] = 2, ["horn"] = 1, ["goldbar"] = 1}, createsyntax = "BEGIN CREATION OF RING OF PESTILENCE"},
+    ["Stasis"] = {Actions = {"16", "16", "3", "4", "5", "1", "2", "4", "6", "6", "17", "17", "17", "16", "13", "13", "13", "13", "13", "13", "15", "15"}, Comms = {["goldbar"] = 4, ["ice"] = 3, ["horn"] = 3, ["dust"] = 2, ["silver"] = 1}, createsyntax = "BEGIN CREATION OF BAG OF STASIS"},
+    ["Orb"] = {Actions = {"2", "2", "2", "1"}, Comms = {["dust"] = 1}, createsyntax = "BEGIN CREATION OF ORB SIGIL"}, 
+  }
+  
+  
+  --Remedies
+  Legacy.Trades.Remedies = Legacy.Trades.Remedies or {}
+  Legacy.Settings.Trades.Remedies = Legacy.Settings.Trades.Remedies or {}
+  
+  --Transmutation
+  Legacy.Trades.Transmutation = Legacy.Trades.Transmutation or {}
+  Legacy.Settings.Trades.Transmutation = Legacy.Settings.Trades.Transmutation or {}
+  
+  --Gathering
+  Legacy.Trades.Gathering = Legacy.Trades.Gathering or {}
+  Legacy.Settings.Trades.Gathering = Legacy.Settings.Trades.Gathering or {}
+  
+  --Harvesting
+  Legacy.Trades.Harvesting = Legacy.Trades.Harvesting or {}
+  Legacy.Settings.Trades.Harvesting = Legacy.Settings.Trades.Harvesting or {}
+  
+  --Toxicology
+  Legacy.Trades.Toxicology = Legacy.Trades.Toxicology or {}
+  Legacy.Settings.Trades.Toxicology = Legacy.Settings.Trades.Toxicology or {}
+  
+  --Shipfitting
+  Legacy.Trades.Shipfitting = Legacy.Trades.Shipfitting or {}
+  Legacy.Settings.Trades.Shipfitting = Legacy.Settings.Trades.Shipfitting or {}
+  
+  local relevantSkills = {}
+  for k,v in pairs(gmcp.Char.Skills.Groups) do
+    if Legacy.Trades[v.name] then
+      table.insert(relevantSkills, "&lt;gold&gt;"..v.name)
+    end
+  end
+
+  Legacy.echo("Trades loaded successfully!")
+  Legacy.echo("Relevant Skills: "..table.concat(relevantSkills, "&lt;white&gt;, ").."\n")
+
+end
+
+registerAnonymousEventHandler("LegacyLoaded", "Trades_Setup")</script>
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Conjuration</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>Conjuration Functions</name>
+					<packageName></packageName>
+					<script>function Conjure_Queue(item, num)
+  if num == nil then num = 1 end
+  if item == "mono" then
+    item = "monolith"
+  elseif item == "gem" then
+    item = "negation"
+  elseif item == "necklace" then
+    item = "comprehension"
+  elseif item == "mush" then
+    item = "mushroom"
+  elseif item == "dream" then
+    item = "dreamcatcher"
+  elseif item == "worry" or item == "stone" then
+    item = "worrystone"
+  end
+  
+  Legacy.Settings.Trades.Conjuration.Items = Legacy.Settings.Trades.Conjuration.Items or {}
+for k,v in pairs(Legacy.Trades.Conjuration.Items[item:title()].Comms) do
+  if math.floor(v * num) &gt; Legacy.Rift.Commodities[k] then
+    Legacy.echo("You do not have enough '&lt;gold&gt;"..k:title().."&lt;white&gt;' to make &lt;gold&gt;"..num.." "..item..".\n&lt;DimGrey&gt;(You need &lt;gold&gt;"..math.floor(v * num).." &lt;white&gt;"..k:title().."&lt;DimGrey&gt;, and only have &lt;gold&gt;"..Legacy.Rift.Commodities[k].."&lt;DimGrey&gt;)\n")
+  end
+end
+  if Legacy.Settings.Trades.Conjuration.Items[item] then
+    Legacy.Settings.Trades.Conjuration.Items[item] = {num = Legacy.Settings.Trades.Conjuration.Items[item].num , total = tonumber(num)}
+    Legacy.echo("Adjusted &lt;gold&gt;"..item:title().."&lt;white&gt; total to &lt;gold&gt;"..num..".")
+  else
+    Legacy.Settings.Trades.Conjuration.Items[item] = {num = 0, total = tonumber(num)}
+    Legacy.echo("Added &lt;gold&gt;"..num.." "..item:title().."&lt;white&gt; to your Conjuration queue.")
+  end
+end
+
+function Conjure_Comms()
+if Legacy.Settings.Trades.Conjuration.conjureFor == "" then return end
+  local Comms = Legacy.Trades.Conjuration.Items[Legacy.Settings.Trades.Conjuration.conjureFor:title()].Comms
+  for k,v in pairs(Comms) do
+    send("outr "..v.." "..k)
+  end
+end
+
+
+
+function Conjure_Item()
+  if table.size(Legacy.Settings.Trades.Conjuration.Items) == 0 then
+    Legacy.echo("There is nothing left to Conjure!")
+    return
+  else
+    sendAll("outr 50 kola", "get 1 gold from pack")
+    for k,v in pairs(Legacy.Settings.Trades.Conjuration.Items) do
+      if v.num &lt; v.total then
+        Legacy.Settings.Trades.Conjuration.conjureFor = tostring(k)
+        Legacy.Settings.Trades.Conjuration.currentaction = 1
+      end 
+    end
+  end
+local Items  = Legacy.Trades.Conjuration.Items
+local item   = Legacy.Settings.Trades.Conjuration.conjureFor:title()
+local action = Legacy.Settings.Trades.Conjuration.currentaction
+local Steps  = Legacy.Settings.Trades.Conjuration.Steps
+
+Conjure_Comms()
+if Legacy.Settings.Trades.Conjuration.ouroboros1 == nil then
+  for k,v in pairs(gmcp.Char.Items.List.items) do
+    if v.name == "a beguiling ouroboros" then
+      Legacy.Settings.Trades.Conjuration.ouroboros1 = v.id
+      break
+    end
+  end
+end
+
+if Legacy.Settings.Trades.Conjuration.ouroboros2 == nil then
+  for k,v in pairs(gmcp.Char.Items.List.items) do
+    if v.name == "a beguiling ouroboros" and v.id ~= Legacy.Settings.Trades.Conjuration.ouroboros1 then
+      Legacy.Settings.Trades.Conjuration.ouroboros2 = v.id
+      break
+    end
+  end
+end
+
+  send(Items[item].createsyntax)
+  
+  if Items[item].Actions[action] == "2" then
+    send("queue addclear free "..Steps[Items[item].Actions[1]]..Legacy.Trades.Conjuration.ConjChant())
+    Legacy.Settings.Trades.Conjuration.currentaction = Legacy.Settings.Trades.Conjuration.currentaction + 1
+  else
+    send("queue addclear free "..Steps[Items[item].Actions[1]])
+    Legacy.Settings.Trades.Conjuration.currentaction = Legacy.Settings.Trades.Conjuration.currentaction + 1
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<VariablePackage>
+		<HiddenVariables />
+	</VariablePackage>
+</MudletPackage>
